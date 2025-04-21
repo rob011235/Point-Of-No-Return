@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxm3e6wx5ywlh"]
+
+[ext_resource type="PackedScene" uid="uid://qek5jpo2l1n7" path="res://Meshes/Museum/Museum.blend" id="1_gecw7"]
+[ext_resource type="PackedScene" uid="uid://qxxriwndy8bq" path="res://Objects/DragBox3D.tscn" id="2_5ip71"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ppie6"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mlfu0"]
+size = Vector3(17.8347, 0.214073, 15.0544)
+
+[node name="Museum" type="Node3D"]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ppie6")
+
+[node name="Visuals" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.63441, 0, 0)
+
+[node name="Museum" parent="Visuals" instance=ExtResource("1_gecw7")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0012)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.149384, -0.171474, -0.0650635)
+shape = SubResource("BoxShape3D_mlfu0")
+
+[node name="DragBox3D" parent="." node_paths=PackedStringArray("RootNode") instance=ExtResource("2_5ip71")]
+transform = Transform3D(18.8887, 0, 0, 0, 7.62599, 0, 0, 0, 16.1895, 0.332886, 2.63693, -0.890242)
+RootNode = NodePath("..")

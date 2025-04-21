@@ -1,0 +1,14 @@
+[
+	{  
+		"UserId": "user1",
+		"Password":"test",
+		"AvatarName":"Sakaki",
+		"AvatarPath":"res://Avatars/adventurer_idle.png"
+	},
+	{  
+		"UserId": "user2",
+		"Password":"test",
+		"AvatarName":"Keyaki",
+		"AvatarPath":"res://Avatars/player_idle.png"
+	}
+]

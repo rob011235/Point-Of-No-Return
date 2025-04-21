@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://0carir8wip6g"]
+
+[ext_resource type="Script" path="res://Menus/PauseMenu.cs" id="1_233rs"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_233rs")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RunAsHostButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 32.0
+offset_right = 499.0
+offset_bottom = 63.0
+text = "Run as host
+"
+
+[node name="LeaveServerButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 32.0
+offset_right = 611.0
+offset_bottom = 63.0
+text = "Leave Server
+"
+
+[node name="ManageButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 32.0
+offset_right = 774.0
+offset_bottom = 63.0
+tooltip_text = "Delete the selected start location."
+text = "Manage servers"
+
+[node name="QuitGameButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 784.0
+offset_top = 32.0
+offset_right = 906.0
+offset_bottom = 63.0
+text = "Quit Game"
+
+[node name="ResumeButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 912.0
+offset_top = 32.0
+offset_right = 1032.0
+offset_bottom = 63.0
+text = "Resume Game"
+
+[connection signal="pressed" from="Panel/RunAsHostButton" to="." method="OnRunAsHostButtonPressed"]
+[connection signal="pressed" from="Panel/LeaveServerButton" to="." method="OnLeaveServerButtonPressed"]
+[connection signal="pressed" from="Panel/ManageButton" to="." method="OnManageButtonPressed"]
+[connection signal="pressed" from="Panel/QuitGameButton" to="." method="OnQuitGameButtonPressed"]
+[connection signal="pressed" from="Panel/ResumeButton" to="." method="OnResumeButtonPressed"]

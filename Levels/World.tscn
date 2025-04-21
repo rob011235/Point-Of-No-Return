@@ -1,0 +1,45 @@
+[gd_scene load_steps=12 format=3 uid="uid://dsns0beelvld0"]
+
+[ext_resource type="Script" path="res://Levels/World.cs" id="1_t7upl"]
+[ext_resource type="Shader" path="res://Levels/World.gdshader" id="3_emnuy"]
+[ext_resource type="Texture2D" uid="uid://bcu85prnemin7" path="res://Textures/Skybox/TropicalSunnyDay/TropicalSunnyDayBack2048.png" id="4_bh3v6"]
+[ext_resource type="Texture2D" uid="uid://bfossbtdxlmyg" path="res://Textures/Skybox/TropicalSunnyDay/TropicalSunnyDayDown2048.png" id="5_kyqug"]
+[ext_resource type="Texture2D" uid="uid://cvcecllxbojd6" path="res://Textures/Skybox/TropicalSunnyDay/TropicalSunnyDayFront2048.png" id="6_um7vw"]
+[ext_resource type="Texture2D" uid="uid://dgbcurxd4lcoc" path="res://Textures/Skybox/TropicalSunnyDay/TropicalSunnyDayLeft2048.png" id="7_pcf0a"]
+[ext_resource type="Texture2D" uid="uid://lqlsgfyxblsi" path="res://Textures/Skybox/TropicalSunnyDay/TropicalSunnyDayRight2048.png" id="8_qpwbh"]
+[ext_resource type="Texture2D" uid="uid://bhugsj6vkxjjx" path="res://Textures/Skybox/TropicalSunnyDay/TropicalSunnyDayUp2048.png" id="9_vg5cm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ku78b"]
+shader = ExtResource("3_emnuy")
+shader_parameter/front = ExtResource("6_um7vw")
+shader_parameter/back = ExtResource("4_bh3v6")
+shader_parameter/left = ExtResource("7_pcf0a")
+shader_parameter/right = ExtResource("8_qpwbh")
+shader_parameter/top = ExtResource("9_vg5cm")
+shader_parameter/bottom = ExtResource("5_kyqug")
+
+[sub_resource type="Sky" id="Sky_q2bor"]
+sky_material = SubResource("ShaderMaterial_ku78b")
+process_mode = 2
+
+[sub_resource type="Environment" id="Environment_wqnuj"]
+background_mode = 2
+sky = SubResource("Sky_q2bor")
+fog_enabled = true
+fog_light_energy = 0.3
+fog_sun_scatter = 0.25
+fog_sky_affect = 0.297
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_t7upl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 25.784, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wqnuj")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Actors/Player/Player3D.tscn")
+spawn_path = NodePath("..")

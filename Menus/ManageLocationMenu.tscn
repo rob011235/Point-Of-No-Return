@@ -1,0 +1,227 @@
+[gd_scene load_steps=2 format=3 uid="uid://crd2jd2hlivpf"]
+
+[ext_resource type="Script" path="res://Menus/ManageLocationMenu.cs" id="1_8f1k1"]
+
+[node name="ManageLocationMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_top = 67.0
+offset_right = -576.0
+offset_bottom = 67.0
+grow_horizontal = 2
+script = ExtResource("1_8f1k1")
+
+[node name="VBoxContainer" type="Control" parent="."]
+layout_mode = 2
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 584.0
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_right = 576.0
+offset_bottom = 43.0
+grow_horizontal = 2
+text = "Manage Location"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloselButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+offset_left = 1008.0
+offset_top = 12.0
+offset_right = 1128.0
+offset_bottom = 43.0
+text = "Close
+"
+
+[node name="LocationList" type="ItemList" parent="VBoxContainer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_top = 67.0
+offset_right = 320.0
+offset_bottom = 243.0
+grow_horizontal = 2
+
+[node name="RemoveButton" type="Button" parent="VBoxContainer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 232.0
+offset_top = 440.0
+offset_right = 312.0
+offset_bottom = 471.0
+grow_horizontal = 2
+tooltip_text = "Delete the selected start location."
+text = "Delete"
+
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 272.0
+offset_right = 328.0
+offset_bottom = 301.0
+text = "Name"
+vertical_alignment = 1
+
+[node name="NameLineEdit" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 0
+offset_left = 368.0
+offset_top = 272.0
+offset_right = 896.0
+offset_bottom = 303.0
+placeholder_text = "Please enter a descriptive name for this server"
+
+[node name="DomainNameLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 309.0
+offset_right = 328.0
+offset_bottom = 341.0
+text = "Url"
+vertical_alignment = 1
+
+[node name="DomainNameLineEdit" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 0
+offset_left = 368.0
+offset_top = 309.0
+offset_right = 896.0
+offset_bottom = 340.0
+placeholder_text = "Enter url you need to get this from the owner of the server."
+
+[node name="UserNameLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 344.0
+offset_right = 328.0
+offset_bottom = 373.0
+text = "UserId"
+vertical_alignment = 1
+
+[node name="UserNameLineEdit" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 0
+offset_left = 368.0
+offset_top = 344.0
+offset_right = 896.0
+offset_bottom = 375.0
+placeholder_text = "Please enter userid for server if you own it. Or leave blank."
+expand_to_text_length = true
+
+[node name="PasswordLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 381.0
+offset_right = 347.0
+offset_bottom = 413.0
+text = "password"
+vertical_alignment = 1
+
+[node name="PasswordLineEdit" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 0
+offset_left = 368.0
+offset_top = 381.0
+offset_right = 896.0
+offset_bottom = 412.0
+placeholder_text = "Enter password to access server if you own it. Or leave blank."
+secret = true
+
+[node name="BackupDatabaseButton" type="Button" parent="VBoxContainer"]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 441.0
+offset_right = 453.0
+offset_bottom = 472.0
+text = "Backup Database
+"
+
+[node name="UploadDatabaseButton" type="Button" parent="VBoxContainer"]
+layout_mode = 0
+offset_left = 287.0
+offset_top = 477.0
+offset_right = 451.0
+offset_bottom = 508.0
+text = "Upload Database
+"
+
+[node name="StartServerButton" type="Button" parent="VBoxContainer"]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 440.0
+offset_right = 651.0
+offset_bottom = 471.0
+text = "Start Server"
+
+[node name="StopServerButton" type="Button" parent="VBoxContainer"]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 477.0
+offset_right = 651.0
+offset_bottom = 508.0
+text = "Stop Server
+"
+
+[node name="Update" type="Button" parent="VBoxContainer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 232.0
+offset_top = 477.0
+offset_right = 312.0
+offset_bottom = 508.0
+grow_horizontal = 2
+tooltip_text = "Add a new start location to your list."
+text = "Update
+"
+
+[node name="StatusLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 552.0
+offset_right = 1144.0
+offset_bottom = 640.0
+text = "Status"
+scroll_following = true
+
+[node name="DownloadFileDialog" type="FileDialog" parent="."]
+title = "Download Database"
+initial_position = 1
+size = Vector2i(600, 400)
+access = 2
+filters = PackedStringArray("*.db")
+
+[node name="UploadFileDialog" type="FileDialog" parent="."]
+auto_translate_mode = 1
+title = "Open a File"
+initial_position = 1
+size = Vector2i(600, 400)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.db")
+
+[connection signal="pressed" from="VBoxContainer/CloselButton" to="." method="OnCancelButtonPressed"]
+[connection signal="item_selected" from="VBoxContainer/LocationList" to="." method="OnItemSelected"]
+[connection signal="pressed" from="VBoxContainer/RemoveButton" to="." method="OnDeleteButtonPressedAsync"]
+[connection signal="pressed" from="VBoxContainer/BackupDatabaseButton" to="." method="OnBackupDatabaseButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/UploadDatabaseButton" to="." method="OnUploadDatabaseButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/StartServerButton" to="." method="OnStartServerButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/StopServerButton" to="." method="OnStopServerButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/Update" to="." method="OnUpdateButtonPressedAsync"]
+[connection signal="file_selected" from="DownloadFileDialog" to="." method="OnDownloadFileSelectedAsync"]
+[connection signal="file_selected" from="UploadFileDialog" to="." method="OnUploadFileSelectedAsync"]

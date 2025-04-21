@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dh8s5073ffqm0"]
+
+[ext_resource type="Script" path="res://Objects/GiffardAirship.cs" id="1_2p7hl"]
+[ext_resource type="PackedScene" uid="uid://dbl4h11ipwj0x" path="res://Meshes/GiffardAirship/GiffardAirship.blend" id="2_npcgg"]
+[ext_resource type="PackedScene" uid="uid://qxxriwndy8bq" path="res://Objects/DragBox3D.tscn" id="3_oi0bg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rbogc"]
+size = Vector3(2.71936, 2.00439, 1.68896)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6vv1g"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="GiffardAirship" type="Node3D" groups=["Draggable"]]
+script = ExtResource("1_2p7hl")
+
+[node name="GiffardAirshipModel" parent="." instance=ExtResource("2_npcgg")]
+transform = Transform3D(2, 0, 2.38419e-07, 0, 2, 0, -2.38419e-07, 0, 2, 0, -0.262828, 0)
+
+[node name="HelmArea3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.22883)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HelmArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06503, 0)
+shape = SubResource("BoxShape3D_rbogc")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00378418, -0.126587, 0.738266)
+use_collision = true
+size = Vector3(3.89771, 0.185791, 6.28232)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_6vv1g")
+
+[node name="DragBox3D" parent="." node_paths=PackedStringArray("RootNode") instance=ExtResource("3_oi0bg")]
+transform = Transform3D(4.02125, 0, 0, 0, 0.375578, 0, 0, 0, 6.49496, 0, -0.115833, 0.74824)
+RootNode = NodePath("..")
+
+[connection signal="body_entered" from="HelmArea3D" to="." method="EnterHelmArea"]
+[connection signal="body_exited" from="HelmArea3D" to="." method="ExitHelmArea"]

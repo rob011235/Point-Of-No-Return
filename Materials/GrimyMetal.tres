@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://d365o5v6xn2rr"]
+
+[ext_resource type="Texture2D" uid="uid://pvpwjylekvix" path="res://Textures/grimy-metal-bl/grimy-metal-albedo.png" id="1_ilsuu"]
+[ext_resource type="Texture2D" uid="uid://bbkdtb257uwia" path="res://Textures/grimy-metal-bl/grimy-metal-metalness.png" id="2_gsaec"]
+[ext_resource type="Texture2D" uid="uid://dxyv5jcng3arv" path="res://Textures/grimy-metal-bl/grimy-metal-normal-ogl.png" id="3_dtlm2"]
+[ext_resource type="Texture2D" uid="uid://ynrcu8504bjc" path="res://Textures/grimy-metal-bl/grimy-metal-roughness.png" id="4_d5qpq"]
+
+[resource]
+albedo_texture = ExtResource("1_ilsuu")
+metallic = 1.0
+metallic_texture = ExtResource("2_gsaec")
+roughness_texture = ExtResource("4_d5qpq")
+normal_enabled = true
+normal_scale = 2.73
+normal_texture = ExtResource("3_dtlm2")

@@ -1,0 +1,19 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = crlf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{cs,vb}]
+dotnet_diagnostic.IDE0003.severity = none
+dotnet_diagnostic.IDE0009.severity = none
+
+# [*.{cs,vb}]
+# file_header_template = <copyright file="{fileName}" author="Rob Garner" year="2025">\nCopyright (c) 2025 Rob Garner (rgarner011235@gmail.com). All rights reserved.\n</copyright>

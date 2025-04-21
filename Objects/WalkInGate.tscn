@@ -1,0 +1,144 @@
+[gd_scene load_steps=6 format=3 uid="uid://caue7prr5ax0l"]
+
+[ext_resource type="Script" path="res://Objects/WalkInGate.cs" id="1_uctvv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7dkmy"]
+size = Vector3(2, 2, 0.5)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oy6bu"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fyv0i"]
+transparency = 1
+albedo_color = Color(0.113725, 1, 1, 0.0588235)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ps43o"]
+
+[node name="WalkInGate" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_uctvv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7dkmy")
+
+[node name="SetTravelLocationPanel" type="Panel" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -296.0
+offset_top = 24.0
+offset_right = 288.0
+offset_bottom = 152.0
+grow_horizontal = 2
+
+[node name="UrlLabel" type="Label" parent="SetTravelLocationPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 96.0
+offset_bottom = 39.0
+text = "Url: 
+"
+vertical_alignment = 1
+
+[node name="DomainNameLineEdit" type="LineEdit" parent="SetTravelLocationPanel"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 8.0
+offset_right = 480.0
+offset_bottom = 39.0
+
+[node name="UpdateButton" type="Button" parent="SetTravelLocationPanel"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 8.0
+offset_right = 576.0
+offset_bottom = 120.0
+text = "Update"
+
+[node name="PositionLabel" type="Label" parent="SetTravelLocationPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 96.0
+offset_bottom = 79.0
+text = "Position"
+vertical_alignment = 1
+
+[node name="PosXLineEdit" type="LineEdit" parent="SetTravelLocationPanel"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 48.0
+offset_right = 224.0
+offset_bottom = 79.0
+text = "0"
+
+[node name="PosYLineEdit" type="LineEdit" parent="SetTravelLocationPanel"]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 48.0
+offset_right = 352.0
+offset_bottom = 79.0
+text = "0"
+
+[node name="PosZLineEdit" type="LineEdit" parent="SetTravelLocationPanel"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 48.0
+offset_right = 480.0
+offset_bottom = 80.0
+text = "0"
+
+[node name="RotationLabel" type="Label" parent="SetTravelLocationPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 88.0
+offset_right = 96.0
+offset_bottom = 119.0
+text = "Position"
+vertical_alignment = 1
+
+[node name="RotXLineEdit" type="LineEdit" parent="SetTravelLocationPanel"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 88.0
+offset_right = 224.0
+offset_bottom = 119.0
+text = "0"
+
+[node name="RotYLineEdit" type="LineEdit" parent="SetTravelLocationPanel"]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 88.0
+offset_right = 352.0
+offset_bottom = 119.0
+text = "0"
+
+[node name="RotZLineEdit" type="LineEdit" parent="SetTravelLocationPanel"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 88.0
+offset_right = 480.0
+offset_bottom = 120.0
+text = "0"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_oy6bu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_fyv0i")
+mesh = SubResource("BoxMesh_ps43o")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExited"]
+[connection signal="focus_entered" from="SetTravelLocationPanel/DomainNameLineEdit" to="." method="DomainNameLineEditOnFocusEntered"]
+[connection signal="focus_exited" from="SetTravelLocationPanel/DomainNameLineEdit" to="." method="DomainNameLineEditOnFocusExited"]
+[connection signal="pressed" from="SetTravelLocationPanel/UpdateButton" to="." method="OnSetTravelLocationButtonPressed"]

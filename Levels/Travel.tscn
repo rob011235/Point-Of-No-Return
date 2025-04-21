@@ -1,0 +1,88 @@
+[gd_scene load_steps=15 format=3 uid="uid://piakd2atte7t"]
+
+[ext_resource type="Shader" path="res://Levels/World.gdshader" id="2_8hbwy"]
+[ext_resource type="Texture2D" uid="uid://bcu85prnemin7" path="res://Textures/Skybox/TropicalSunnyDay/TropicalSunnyDayBack2048.png" id="3_ffdv5"]
+[ext_resource type="Texture2D" uid="uid://bfossbtdxlmyg" path="res://Textures/Skybox/TropicalSunnyDay/TropicalSunnyDayDown2048.png" id="4_0a55c"]
+[ext_resource type="Texture2D" uid="uid://cvcecllxbojd6" path="res://Textures/Skybox/TropicalSunnyDay/TropicalSunnyDayFront2048.png" id="5_vp7q5"]
+[ext_resource type="Texture2D" uid="uid://dgbcurxd4lcoc" path="res://Textures/Skybox/TropicalSunnyDay/TropicalSunnyDayLeft2048.png" id="6_ija6e"]
+[ext_resource type="Texture2D" uid="uid://lqlsgfyxblsi" path="res://Textures/Skybox/TropicalSunnyDay/TropicalSunnyDayRight2048.png" id="7_5bk26"]
+[ext_resource type="PackedScene" uid="uid://dh8s5073ffqm0" path="res://Objects/GiffardAirship.tscn" id="8_3xk72"]
+[ext_resource type="Texture2D" uid="uid://bhugsj6vkxjjx" path="res://Textures/Skybox/TropicalSunnyDay/TropicalSunnyDayUp2048.png" id="8_otuth"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ku78b"]
+shader = ExtResource("2_8hbwy")
+shader_parameter/front = ExtResource("5_vp7q5")
+shader_parameter/back = ExtResource("3_ffdv5")
+shader_parameter/left = ExtResource("6_ija6e")
+shader_parameter/right = ExtResource("7_5bk26")
+shader_parameter/top = ExtResource("8_otuth")
+shader_parameter/bottom = ExtResource("4_0a55c")
+
+[sub_resource type="Sky" id="Sky_q2bor"]
+sky_material = SubResource("ShaderMaterial_ku78b")
+process_mode = 2
+
+[sub_resource type="Environment" id="Environment_wqnuj"]
+background_mode = 2
+sky = SubResource("Sky_q2bor")
+fog_enabled = true
+fog_light_energy = 0.3
+fog_sun_scatter = 0.25
+fog_sky_affect = 0.297
+
+[sub_resource type="Animation" id="Animation_s2yxh"]
+resource_name = "Idle"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GiffardAirship")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 9.23333, 1, 0, -0.168223, 0, 14.4667, 1, 0, 0.092364, 0, 19.9, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GiffardAirship")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 6.23333, 1, 0, 0, 0.0374286, 0.999299, 13.5333, 1, 0, 0, -0.0236732, 0.99972, 20, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_h6tdv"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GiffardAirship")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hj32t"]
+_data = {
+"Idle": SubResource("Animation_s2yxh"),
+"RESET": SubResource("Animation_h6tdv")
+}
+
+[node name="Main" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285953, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 25.784, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wqnuj")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, 0.192024)
+
+[node name="GiffardAirship" parent="." instance=ExtResource("8_3xk72")]
+transform = Transform3D(0.999209, 0.0397739, 0, -0.0397739, 0.999209, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hj32t")
+}
+autoplay = "Idle"

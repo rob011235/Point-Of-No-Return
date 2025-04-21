@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://qxxriwndy8bq"]
+
+[ext_resource type="Script" path="res://Objects/DragBox3d.cs" id="1_migrl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dsuq1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gxlu2"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nd0w5"]
+
+[node name="DragBox3D" type="Area3D"]
+script = ExtResource("1_migrl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_dsuq1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_gxlu2")
+mesh = SubResource("BoxMesh_nd0w5")
+
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExited"]

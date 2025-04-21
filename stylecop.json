@@ -1,0 +1,9 @@
+{
+    "settings": {
+        "documentationRules": {
+            "companyName": "Rob Garner",
+            "copyrightText": "Copyright 2025 (c) {companyName}. All rights reserved.",
+            "headerDecoration": "-----------------------------------------------------------------------"
+        }
+    }
+}

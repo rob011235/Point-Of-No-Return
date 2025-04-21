@@ -1,0 +1,188 @@
+[gd_scene load_steps=3 format=3 uid="uid://chiwqdxhlcrbg"]
+
+[ext_resource type="Script" path="res://Menus/TravelMenu.cs" id="1_bm7f2"]
+[ext_resource type="Script" path="res://Menus/CreateServerMenu.cs" id="2_go8le"]
+
+[node name="TravelMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bm7f2")
+
+[node name="LocationsMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="LocationsMenu"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 104.0
+offset_top = 16.0
+offset_right = -98.0
+offset_bottom = 39.0
+grow_horizontal = 2
+text = "Where do you want to travel to?
+"
+horizontal_alignment = 1
+
+[node name="LocationList" type="ItemList" parent="LocationsMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -313.0
+offset_top = 48.0
+offset_right = 327.0
+offset_bottom = 224.0
+grow_horizontal = 2
+
+[node name="TravelButton" type="Button" parent="LocationsMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -57.0
+offset_top = 240.0
+offset_right = 71.0
+offset_bottom = 271.0
+grow_horizontal = 2
+text = "Travel"
+
+[node name="CostWarningMenu" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -250.0
+offset_right = 500.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CostWarningMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CostWarningMenu/Panel"]
+layout_mode = 2
+offset_left = 131.0
+offset_top = 83.0
+offset_right = 866.0
+offset_bottom = 216.0
+text = "Warning: Creating a new travel location involves creating a Microsoft Virtual Machine using your own Azure account. Microsoft will charge you for use of their cloud services. Do not proceed if you do not want to incure these costs. Before proceding please go to https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account/ and create an azure account."
+autowrap_mode = 1
+
+[node name="ContinueButton" type="Button" parent="CostWarningMenu/Panel"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 249.0
+offset_right = 761.0
+offset_bottom = 301.0
+text = "I understand, I have an azure account and wish to proceed."
+
+[node name="CancelButton" type="Button" parent="CostWarningMenu/Panel"]
+layout_mode = 0
+offset_left = 238.0
+offset_top = 315.0
+offset_right = 759.0
+offset_bottom = 367.0
+text = "I changed my mind."
+
+[node name="CreateServerMenu" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_go8le")
+
+[node name="Panel" type="Panel" parent="CreateServerMenu"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CreateServerMenu/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -143.0
+offset_top = -273.0
+offset_right = 133.0
+offset_bottom = -238.0
+grow_horizontal = 2
+text = "Create A New Travel Location Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CreateServerMenu/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -491.5
+offset_top = -222.5
+offset_right = 491.5
+offset_bottom = 258.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="VBoxContainer" parent="CreateServerMenu/Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NameLineEdit" type="LineEdit" parent="CreateServerMenu/Panel/ScrollContainer/BoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter name for your new location"
+alignment = 1
+caret_blink = true
+
+[node name="UserIdLineEdit" type="LineEdit" parent="CreateServerMenu/Panel/ScrollContainer/BoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter UserId (Cannot be \"admin\")"
+alignment = 1
+caret_blink = true
+
+[node name="PasswordLineEdit" type="LineEdit" parent="CreateServerMenu/Panel/ScrollContainer/BoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter a Password"
+alignment = 1
+caret_blink = true
+secret = true
+
+[node name="CreateButton" type="Button" parent="CreateServerMenu/Panel/ScrollContainer/BoxContainer"]
+layout_mode = 2
+text = "Create New Location
+"
+
+[node name="StatusLabel" type="RichTextLabel" parent="CreateServerMenu/Panel/ScrollContainer/BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+scroll_following = true
+
+[node name="BackButton" type="Button" parent="CreateServerMenu/Panel/ScrollContainer/BoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="LocationsMenu/TravelButton" to="." method="OnTravelButtonPressed"]
+[connection signal="pressed" from="CostWarningMenu/Panel/ContinueButton" to="." method="OnContinueButtonPressed"]
+[connection signal="pressed" from="CostWarningMenu/Panel/CancelButton" to="." method="OnCancelCreateServerButtonPressed"]
+[connection signal="pressed" from="CreateServerMenu/Panel/ScrollContainer/BoxContainer/CreateButton" to="CreateServerMenu" method="OnCreateLocationButtonPressed"]
+[connection signal="pressed" from="CreateServerMenu/Panel/ScrollContainer/BoxContainer/BackButton" to="CreateServerMenu" method="OnBackButtonPressed"]

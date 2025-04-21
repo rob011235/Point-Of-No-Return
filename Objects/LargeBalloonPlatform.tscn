@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcv1ow5p7m145"]
+
+[ext_resource type="PackedScene" uid="uid://qxxriwndy8bq" path="res://Objects/DragBox3D.tscn" id="2_43tiv"]
+[ext_resource type="PackedScene" uid="uid://dcl4pmdtsqfg6" path="res://Meshes/LargePlatform/LargePlatform.blend" id="2_nioh4"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_88eg2"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="LargeBalloonPlatform" type="Node3D" groups=["Draggable"]]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_88eg2")
+
+[node name="DragBox3D" parent="." node_paths=PackedStringArray("RootNode") instance=ExtResource("2_43tiv")]
+transform = Transform3D(120.1, 0, 0, 0, 2.2, 0, 0, 0, 120.1, 0, -1, 0)
+RootNode = NodePath("..")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+use_collision = true
+size = Vector3(120, 2, 120)
+
+[node name="LargePlatform" parent="." instance=ExtResource("2_nioh4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

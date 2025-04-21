@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxf3d5u8xw4ei"]
+
+[ext_resource type="Script" path="res://ServerManagement/ServerManager.cs" id="1_8ev6g"]
+[ext_resource type="PackedScene" uid="uid://5a4t23p74cvy" path="res://Levels/Gui.tscn" id="2_06t3b"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_8ev6g")
+
+[node name="GUI" parent="." instance=ExtResource("2_06t3b")]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://uw2diuifbyjn"]
+
+[ext_resource type="PackedScene" uid="uid://caerg82ux4tdv" path="res://Meshes/Bridge/BridgeSection.blend" id="1_0f8rj"]
+[ext_resource type="PackedScene" uid="uid://qxxriwndy8bq" path="res://Objects/DragBox3D.tscn" id="2_ljxad"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ppie6"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_11fxt"]
+size = Vector3(4.8656, 0.185608, 19.691)
+
+[node name="Bridge" type="Node3D"]
+
+[node name="BridgeSection" parent="." instance=ExtResource("1_0f8rj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ppie6")
+
+[node name="DragBox3D" parent="." node_paths=PackedStringArray("RootNode") instance=ExtResource("2_ljxad")]
+transform = Transform3D(5.12605, 0, 0, 0, 0.381571, 0, 0, 0, 19.7041, 0, -0.125, 0)
+RootNode = NodePath("..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
+shape = SubResource("BoxShape3D_11fxt")
